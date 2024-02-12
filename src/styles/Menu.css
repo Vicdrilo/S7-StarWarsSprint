@@ -26,3 +26,7 @@
 .menu-link:hover {
   color: #d3dce6;
 }
+
+.activated {
+  border-bottom: 2px solid blue;
+}

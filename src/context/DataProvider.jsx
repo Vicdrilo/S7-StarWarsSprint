@@ -8,14 +8,23 @@ export function useDataProvider() {
 }
 
 export function DataProvider({ children }) {
-  const [showShipsList, setShipsList] = useState(false);
+  const [activeNav, setActiveNav] = useState("");
 
-  const handleShowList = () => {
-    setShipsList(!showShipsList);
+  const handleActiveNav = (id) => {
+    setActiveNav(id);
   };
+
+  const [url, setUrl] = useState("");
+
+  const handleUrl = (url) => {
+    setUrl(url);
+  };
+
+  const values = { url, handleUrl, activeNav, handleActiveNav };
+
   return (
     <>
-      <data value={{ showShipsList, handleShowList }}>{children}</data>
+      <data.Provider value={values}>{children}</data.Provider>
     </>
   );
 }
