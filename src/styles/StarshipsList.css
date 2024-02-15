@@ -1,7 +1,7 @@
 .list-btn {
   margin-top: 2rem;
-  width: 30%;
   padding: 0.25rem 0.5rem;
+
   border: 2px solid rgb(39 52 68);
   border-radius: 10px;
   background-color: rgb(39 52 68);
@@ -17,5 +17,17 @@
 
 .list-btn:active {
   border-color: rgb(132 146 166);
+  color: rgb(132 146 166);
+}
+
+.no-action {
+  margin-top: 2rem;
+  padding: 0.25rem 0.5rem;
+
+  border: 2px solid rgba(39, 52, 68, 0.505);
+  border-radius: 10px;
+  background-color: rgba(39, 52, 68, 0.505);
+
+  font-size: 1.5rem;
   color: rgb(132 146 166);
 }

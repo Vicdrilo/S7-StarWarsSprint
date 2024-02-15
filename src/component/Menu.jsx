@@ -1,14 +1,17 @@
 import { Link } from "react-router-dom";
 import "../styles/Menu.css";
 import { useDataProvider } from "../context/DataProvider";
+import { useGetAPIInfo } from "../context/ApiDataProvider";
 
 export function Menu() {
-  const { activeNav, handleActiveNav, handleUrl } = useDataProvider();
+  const { activeNav, handleActiveNav } = useDataProvider();
+
+  const { url, handleUrl } = useGetAPIInfo();
 
   console.log("ACYIVENAV: ", activeNav);
   const activeHome = activeNav === "home" ? "menu-btn activated" : "menu-btn";
   const activeStarships =
-    activeNav === "starships" ? "menu-btn activated" : "menu-btn";
+    activeNav === "list" ? "menu-btn activated" : "menu-btn";
 
   return (
     <>
@@ -26,8 +29,8 @@ export function Menu() {
           to="/ships-list"
           className={`cursor-pointer menu-link text-2xl text-gray-light`}
           onClick={() => {
-            handleActiveNav("starships");
-            handleUrl("https://swapi.dev/api/starships/?page=1");
+            handleActiveNav("list");
+            handleUrl("https://swapi.dev/api/starships/?format=json");
           }}
         >
           STARSHIPS

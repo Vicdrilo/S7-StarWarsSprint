@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { useDataProvider } from "./DataProvider";
+import React, { useContext, useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 const getAPIInfo = React.createContext();
 
@@ -8,34 +8,46 @@ export function useGetAPIInfo() {
 }
 
 export function GetDifferentAPIInfo({ children }) {
-  const { url } = useDataProvider();
-  const methodAllStarships = () => {
-    console.log("URL dentro getDiff...: ", url);
-    return fetch("https://swapi.dev/api/starships/?page=1").then((response) =>
-      response.json()
-    );
+  const [url, setUrl] = useState(
+    "https://swapi.dev/api/starships/?format=json"
+  );
+
+  const handleUrl = (url) => {
+    setUrl(url);
   };
 
-  const methodInfoShip = () => {
-    console.log("vemos 2a vez urlShip: ", url);
-    return fetch(url).then((response) => response.json());
+  const [urlShip, setUrlShip] = useState("");
+
+  const handleUrlShip = (url) => {
+    setUrlShip(url);
   };
+
+  const { isPending, isError, data, error, refetch } = useQuery({
+    queryKey: ["ships"],
+    queryFn: async () => {
+      const response = await fetch(url);
+      return await response.json();
+    },
+  });
+
+  useEffect(() => {
+    url && refetch();
+  }, [url]);
 
   return (
-    <getAPIInfo.Provider value={{ methodAllStarships, methodInfoShip }}>
+    <getAPIInfo.Provider
+      value={{
+        url,
+        handleUrl,
+        urlShip,
+        handleUrlShip,
+        isPending,
+        isError,
+        data,
+        error,
+      }}
+    >
       {children}
     </getAPIInfo.Provider>
   );
 }
-
-//para la lista de naves
-//const getAllStarships = () => {
-//    return fetch("https://swapi.dev/api/starships/?page=1").then((response) =>
-//      response.json()
-//    );
-//  };
-
-//para la info de la nave
-//() => {
-//    return fetch(urlShip).then((response) => response.json());
-//  }

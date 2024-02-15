@@ -14,13 +14,7 @@ export function DataProvider({ children }) {
     setActiveNav(id);
   };
 
-  const [url, setUrl] = useState("");
-
-  const handleUrl = (url) => {
-    setUrl(url);
-  };
-
-  const values = { url, handleUrl, activeNav, handleActiveNav };
+  const values = { activeNav, setActiveNav, handleActiveNav };
 
   return (
     <>
