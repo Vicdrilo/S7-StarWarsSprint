@@ -13,8 +13,20 @@ import {
   faCircleUser,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
+import { useDataProvider } from "../context/DataProvider";
+import { FormModal } from "./FormModal";
 
 export function Header() {
+  const {
+    activeNav,
+    setActiveNav,
+    handleActiveNav,
+    isOpen,
+    handleOnClose,
+    formData,
+    handleFormOnChange,
+  } = useDataProvider();
+
   return (
     <>
       <div className="flex flex-nowrap justify-center header-container">
@@ -45,9 +57,13 @@ export function Header() {
           <div className="cursor-pointer square-right-btn">
             <FontAwesomeIcon icon={faMagnifyingGlass} /> SEARCH
           </div>
-          <div className="cursor-pointer square-right-btn">
+          <div
+            className="cursor-pointer square-right-btn"
+            onClick={handleOnClose}
+          >
             <FontAwesomeIcon icon={faCircleUser} /> LOGIN
           </div>
+          <FormModal />
         </div>
       </div>
       <div className="flex justify-center menu-container">

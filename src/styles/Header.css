@@ -9,3 +9,14 @@
   margin: 1rem;
   margin-top: 0;
 }
+
+#password,
+#email {
+  color: black;
+}
+#errorEmail {
+  width: 100%;
+  border-bottom: 1px solid rgba(240, 70, 70, 0.354);
+  background-color: rgba(78, 42, 42, 0.694);
+  color: red;
+}
