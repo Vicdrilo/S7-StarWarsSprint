@@ -1,3 +1,13 @@
 .info-sh-container {
-  border-left: 1px solid red;
+  border-left: 2px solid red;
+}
+
+.pilot-container,
+.film-container {
+  border-radius: 20px;
+}
+.border-img {
+  border-bottom: 2px solid red;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }

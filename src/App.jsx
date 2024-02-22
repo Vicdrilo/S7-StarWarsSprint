@@ -8,6 +8,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
+import { PrivateRoutes } from "./uitls/PrivateRoutes";
 library.add(fas, far, fab);
 
 export function App() {
@@ -16,8 +17,10 @@ export function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/ships-list" element={<ShipsList />} />
-          <Route path="/ships-list/:shipId" element={<Ship />} />
+          <Route element={<PrivateRoutes />}>
+            <Route path="/ships-list" element={<ShipsList />} />
+            <Route path="/ships-list/:shipId" element={<Ship />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>

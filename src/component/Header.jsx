@@ -15,6 +15,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useDataProvider } from "../context/DataProvider";
 import { FormModal } from "./FormModal";
+import { useAuthUser } from "../context/AuthContextProvider";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase-config";
 
 export function Header() {
   const {
@@ -26,6 +29,24 @@ export function Header() {
     formData,
     handleFormOnChange,
   } = useDataProvider();
+
+  const { logged, setLogged } = useAuthUser();
+
+  const loginBox = logged ? (
+    <div
+      className="cursor-pointer square-right-btn"
+      onClick={() => {
+        signOut(auth);
+        setLogged(null);
+      }}
+    >
+      <FontAwesomeIcon icon={faCircleUser} style={{ color: "green" }} /> LOG OUT
+    </div>
+  ) : (
+    <div className="cursor-pointer square-right-btn" onClick={handleOnClose}>
+      <FontAwesomeIcon icon={faCircleUser} /> LOGIN
+    </div>
+  );
 
   return (
     <>
@@ -57,12 +78,7 @@ export function Header() {
           <div className="cursor-pointer square-right-btn">
             <FontAwesomeIcon icon={faMagnifyingGlass} /> SEARCH
           </div>
-          <div
-            className="cursor-pointer square-right-btn"
-            onClick={handleOnClose}
-          >
-            <FontAwesomeIcon icon={faCircleUser} /> LOGIN
-          </div>
+          {loginBox}
           <FormModal />
         </div>
       </div>

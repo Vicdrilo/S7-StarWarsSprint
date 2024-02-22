@@ -8,7 +8,6 @@ export function Menu() {
 
   const { url, handleUrl } = useGetAPIInfo();
 
-  console.log("ACYIVENAV: ", activeNav);
   const activeHome = activeNav === "home" ? "menu-btn activated" : "menu-btn";
   const activeStarships =
     activeNav === "list" ? "menu-btn activated" : "menu-btn";

@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import { DataProvider } from "./context/DataProvider.jsx";
 import { GetDifferentAPIInfo } from "./context/ApiDataProvider.jsx";
+import { AuthProvider } from "./context/AuthContextProvider.jsx";
 
 const queryClient = new QueryClient();
 
@@ -15,7 +16,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <QueryClientProvider client={queryClient}>
       <DataProvider>
         <GetDifferentAPIInfo>
-          <App />
+          <AuthProvider>
+            <App />
+          </AuthProvider>
         </GetDifferentAPIInfo>
         <ReactQueryDevtools />
       </DataProvider>

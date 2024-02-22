@@ -14,9 +14,18 @@
 #email {
   color: black;
 }
-#errorEmail {
+.error-email {
+  display: inline-block;
   width: 100%;
-  border-bottom: 1px solid rgba(240, 70, 70, 0.354);
-  background-color: rgba(78, 42, 42, 0.694);
-  color: red;
+  border-bottom: 1px solid rgb(255, 255, 255);
+  background-color: red;
+
+  font-size: 1rem;
+  color: white;
+}
+
+#signup-btn:hover,
+#signup-btn:not(:hover),
+#signup-btn:active {
+  border: none;
 }
